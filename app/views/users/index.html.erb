@@ -1,0 +1,32 @@
+<h1 align="center">All users</h1>
+
+<div align="center">
+<%= will_paginate %>
+</div>
+<% @users.each do |user|%>
+    <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+    <div class="well well-lg">
+    <div class="article-title">
+    <%= link_to user.username, user_url(user) %>
+    </div>
+
+    <div style=" text-align:right; color: #737373" >
+    <%= pluralize(user.articles.count, "article") %>   
+    </div>
+    <div class="article-body">
+    <h4 >Email: <%= truncate(user.email) %></h4>
+    </div>
+    <% if logged_in? && (user == current_user || current_user.admin?) %>
+        <div class="article-actions">
+        <%= link_to "Edit this user", edit_user_url(user) %> |
+        <%= link_to "Delete thise user",user_url(user), method: :delete,data: {confirm: "Are you sure?"} %>
+        </div>
+    <%end%>
+    </div>
+    </div>
+    </div>
+<%end%>
+<div align="center">
+<%= will_paginate %>
+</div>

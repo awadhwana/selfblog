@@ -1,0 +1,22 @@
+<h2 align="center">Title: <%= @article.title %></h2>
+<div class="well col-xs-8 col-xs-offset-2">
+<h6> Created by: 
+<% if @article.user == current_user %>
+ <%= link_to 'You', user_url(@article.user_id) %>
+  <% else %>
+   <%= link_to @article.user.username, user_url(@article.user_id) %>
+<% end %>
+<hr>
+<h4 class="center description"><strong>Description:</strong></h4>
+<hr>
+<%= simple_format(@article.description) %>
+<div class="article-actions">
+<% if logged_in? && (current_user == @article.user || current_user.admin? ) %>
+    <%= link_to "Edit this article", edit_article_path(@article), class: "btn btn-xs btn-primary" %>
+    <%= link_to "Delete this article", article_path(@article), method: :delete,
+    data: { confirm: "Are you sure you want to delete the article?"},
+    class: "btn btn-xs btn-danger" %>
+<%end%>
+<%= link_to "View all articles", articles_path, class: "btn btn-xs btn-success" %>
+</div>
+</div>
