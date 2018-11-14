@@ -16,6 +16,18 @@
       <ul class="nav navbar-nav">
         <li><%= link_to 'Articles', articles_url%></li>
         <li><%= link_to 'Users', users_url%></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><% Category.all.each do |c| %>
+              <%= link_to c.name, category_path(c) %>
+              <% end %></li>
+              <% if (logged_in? && current_user.admin?) %>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">create </a></li>
+              <%end%>
+            </ul>
+          </li>
         <% if logged_in? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Action<span class="caret"></span></a>
@@ -40,7 +52,7 @@
       <ul class="nav navbar-nav navbar-right">
       <% if !logged_in? %>
         <li><%= link_to 'Login',login_url %></li>
-        <li><%= link_to 'Sign In', 'signup'%></li>
+        <li><%= link_to 'Sign up', 'signup'%></li>
         <% else%>
         <li><%= link_to 'Logout',logout_path, method: :delete %></li>
           <li class="dropdown">
