@@ -55,15 +55,11 @@ class ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :description)
   end
+  
   def find_article
     @article = Article.find(params[:id])
   end
-  def require_user
-    if !logged_in?
-      flash[:danger] = "Please login first"
-      redirect_to login_url
-    end
-  end
+  
   def require_same_user
     if current_user != @article.user && !current_user.admin?
       flash[:danger] = "You can only modify your own articles"

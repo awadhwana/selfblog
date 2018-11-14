@@ -1,15 +1,17 @@
 <h1>Categories#index</h1>
-
-<% @categories.each do |c| %>
 <hr>
-<div class="row">
-    <div class="col-xs-8 col-xs-offset-2">
-        <div class="well well-lg">
-            <div class="article-title">
-            <%= link_to c.name, category_url(c) %>
+<div align="center">
+<%= will_paginate @categories%>
+    <% @categories.each do |c| %>        
+        <div class="row">
+            <div class="well col-md-4 col-md-offset-4">
+                <div class="article-title">
+                <%= link_to c.name, category_path(c) %>
+                </div>
             </div>
-        </div>
-    </div>        
+        </div>        
+    <% end %>
+    <%= will_paginate @categories%>
 </div>
-<% end %>
+
 
