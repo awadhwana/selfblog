@@ -28,6 +28,7 @@ class ArticlesController < ApplicationController
       flash[:success] = "Article was created !"  
       redirect_to article_path(@article)
      else
+        flash[:danger]="could not create the article"
         render 'new'
     end
   end

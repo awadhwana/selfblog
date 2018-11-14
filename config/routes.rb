@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'categories/index'
   root 'pages#home' 
   get 'about', to: 'pages#about'
   get 'signup', to: 'users#new'
@@ -10,5 +11,6 @@ Rails.application.routes.draw do
   
   resources :articles
   resources :users, except: [:new]
+  resources :categories
 
 end

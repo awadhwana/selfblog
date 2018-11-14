@@ -1,0 +1,15 @@
+<h1>Categories#index</h1>
+
+<% @categories.each do |c| %>
+<hr>
+<div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+        <div class="well well-lg">
+            <div class="article-title">
+            <%= link_to c.name, category_url(c) %>
+            </div>
+        </div>
+    </div>        
+</div>
+<% end %>
+
