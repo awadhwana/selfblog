@@ -4,11 +4,11 @@ class ArticlesController < ApplicationController
   before_action :require_user, except: [:index, :show]
   before_action :require_same_user, except: [:index, :show, :new,:create] 
 
-   def index
-     @articles =Article.paginate(page: params[:page], per_page: 5)
-    end
+  def index
+    @articles =Article.order("created_at DESC").paginate(page: params[:page], per_page: 5)
+  end
   def new
-       @article = Article.new    
+    @article = Article.new    
   end 
   
   def edit
@@ -53,7 +53,7 @@ class ArticlesController < ApplicationController
   end
   private
   def article_params
-    params.require(:article).permit(:title, :description)
+    params.require(:article).permit(:title, :description, category_ids:[])
   end
   
   def find_article
