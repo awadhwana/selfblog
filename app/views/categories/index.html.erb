@@ -1,4 +1,4 @@
-<h1>Categories#index</h1>
+<h1>Categories</h1>
 <hr>
 <div align="center">
 <%= will_paginate @categories%>
@@ -7,6 +7,9 @@
             <div class="well col-md-4 col-md-offset-4">
                 <div class="article-title">
                 <%= link_to c.name, category_path(c) %>
+                </div>
+                <div style=" text-align:right; color: #737373" >
+                    <%= pluralize(c.articles.count, "article") %>   
                 </div>
             </div>
         </div>        
