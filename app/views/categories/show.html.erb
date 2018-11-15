@@ -1,7 +1,8 @@
 <h1 aign="center">
 Category:<b> <%= "#{@category.name.capitalize}"%></b></h1>
-<%= link_to "Create Article", new_article_url, style: 'margin: 50px'%>
-
+<% if logged_in? && current_user.admin? %>
+    <%= link_to "Edit Category", edit_category_url(@category), style: 'margin: 50px'%>
+<% end %>
 <div align="center">
 <%= will_paginate @category_articles%>
 </div>

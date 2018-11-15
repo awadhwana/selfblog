@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
     before_action :require_admin , except: [:index, :show]
     def index
-        @categories = Category.paginate(page: params[:page], per_page: 3)   
+        @categories = Category.order("updated_at DESC").paginate(page: params[:page], per_page: 3)   
     end
 
     def show
@@ -14,6 +14,7 @@ class CategoriesController < ApplicationController
     end
 
     def edit
+        @category = Category.find(params[:id])
         
     end
 
@@ -23,7 +24,7 @@ class CategoriesController < ApplicationController
             flash[:success]="Category successfuly created"
             redirect_to categories_url
         else
-            flash[:danger]="Please try again"
+            flash[:danger]="Something went wrong, please try again"
             render :new
          
         end    
@@ -31,6 +32,15 @@ class CategoriesController < ApplicationController
     end
 
     def update
+        @category = Category.find(params[:id])
+        if @category.update(category_params)
+            flash[:success]="Category successfuly updated"
+            redirect_to categories_url
+        else
+            flash[:danger]="Something went wrong, please try again"
+            render :edit
+         
+        end    
         
     end
 
