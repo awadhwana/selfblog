@@ -1,0 +1,6 @@
+<h1 aign="center">
+Category:<b> <%= "#{@category.name.capitalize}"%></b></h1>
+<%= render 'articles/article', obj: @category_articles %>
+<div class="col-xs-4 col-xs-offset-4"> 
+    [ <%= link_to "View all categories", categories_url %> ]
+</div>
