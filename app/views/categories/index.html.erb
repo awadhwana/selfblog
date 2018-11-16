@@ -9,7 +9,7 @@
                 <%= link_to c.name, category_path(c) %>
                 </div>
                 <div style=" text-align:right; color: #737373" >
-                    <%= pluralize(c.articles.count, "article") %>   
+                    <%= pluralize(c.articles.count, 'article', 'articles') %>   
                 </div>
             </div>
         </div>        
