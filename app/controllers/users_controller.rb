@@ -44,8 +44,7 @@ class UsersController < ApplicationController
     
     @user.destroy
     flash[:danger] = 'User was successfully deleted'
-    redirect_to root_url
-  
+    redirect_to users_path
   end
   
   private
