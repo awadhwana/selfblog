@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
       flash[:success] = 'Article was created !'
       redirect_to article_path(@article)
     else
-      flash[:danger]='could not create the article'
+      flash[:danger] = 'could not create the article'
       render 'new'
     end
   end
@@ -56,9 +56,7 @@ class ArticlesController < ApplicationController
   end
 
   def require_same_user
-    if current_user != @article.user && !current_user.admin?
-      flash[:danger] = 'You can only modify your own articles'
-      
-    end
+    flash[:danger] = 'You can only modify your own articles' if
+    current_user != @article.user && !current_user.admin?
   end
 end
