@@ -19,15 +19,15 @@ class UsersController < ApplicationController
   end
 
   def create
-      @user = User.new(user_params) 
-      if @user.save
-        session[:user_id] = @user.id
-        flash[:success] = "Account created successfully!"
-        redirect_to user_url(@user)
-        else
-        flash[:danger] = "Oops, couldn't create account. Please make sure you are using a valid email and password and try again."
-        render :new
-      end
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      flash[:success] = 'Account created successfully!'
+      redirect_to user_url(@user)
+    else
+      flash[:danger] = "Oops, couldn't create account. Please make sure you are using a valid email and password and try again."
+      render :new
+    end
   end
 
   def update
