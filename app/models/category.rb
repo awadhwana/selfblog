@@ -1,6 +1,6 @@
+# category model
 class Category < ApplicationRecord
-    has_many :article_categories
-    has_many :articles, through: :article_categories
-    
-    validates :name, presence: true, length: { minimum: 3, maximum: 15}, uniqueness: true
+  has_many :article_categories
+  has_many :articles, through: :article_categories
+  validates :name, presence: true, length: { minimum: 3, maximum: 15}, uniqueness: true
 end
